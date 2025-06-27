@@ -128,4 +128,46 @@ weighted avg       0.97      0.96      0.96       114
   - Precision: 0.97, Recall: 0.96, F1-score: 0.96.
 
 
+📋 Dataset Features and Their Role
+Below is a description of each column in the dataset, and why it is useful for predicting whether a breast tumor is benign or malignant:
+
+This dataset contains features computed from digitized images of breast mass fine-needle aspirate (FNA) biopsies. Each feature describes characteristics of the cell nuclei present in the image.
+
+
+|   Column                  | Description                                              | Use in Prediction                                             |
+| ------------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
+| `id`                      | Unique identifier for each patient/sample                | Not predictive. Used only for reference; usually dropped.     |
+| `diagnosis`               | Diagnosis label: **M** = malignant, **B** = benign       | **Target variable** (converted to 1 for M, 0 for B).          |
+| `radius_mean`             | Mean of distances from center to points on the perimeter | Larger radii often indicate malignancy.                       |
+| `texture_mean`            | Variation in gray-scale values                           | Captures cell uniformity; high variation may indicate cancer. |
+| `perimeter_mean`          | Mean size of the perimeter of the mass                   | Tumors with irregular shapes often have higher perimeters.    |
+| `area_mean`               | Mean area of the mass                                    | Larger areas often correlate with malignancy.                 |
+| `smoothness_mean`         | Variation in radius lengths                              | Less smooth (more irregular) can suggest malignancy.          |
+| `compactness_mean`        | Perimeter² / area - 1.0                                  | Higher values may indicate irregular, complex shapes.         |
+| `concavity_mean`          | Severity of concave portions of the contour              | Malignant tumors often have more pronounced concavities.      |
+| `concave points_mean`     | Number of concave portions of the contour                | More concave points typically signal malignancy.              |
+| `symmetry_mean`           | Symmetry of the cell shape                               | Asymmetry is a common indicator of malignancy.                |
+| `fractal_dimension_mean`  | Complexity of the contour’s shape                        | Higher values indicate more complex, irregular borders.       |
+| `radius_se`               | Standard error of radius measurements                    | Variability in radius can reveal heterogeneity.               |
+| `texture_se`              | Standard error of texture measurements                   | Variability hints at inconsistent cell structure.             |
+| `perimeter_se`            | Standard error of perimeter measurements                 | Captures shape irregularities.                                |
+| `area_se`                 | Standard error of area measurements                      | Reflects variability in size.                                 |
+| `smoothness_se`           | Standard error of smoothness measurements                | Indicates local irregularities.                               |
+| `compactness_se`          | Standard error of compactness measurements               | Variability in compactness hints at heterogeneity.            |
+| `concavity_se`            | Standard error of concavity measurements                 | Indicates shape variation.                                    |
+| `concave points_se`       | Standard error of concave points measurements            | Variability of concave features is informative.               |
+| `symmetry_se`             | Standard error of symmetry measurements                  | Indicates inconsistency in shape.                             |
+| `fractal_dimension_se`    | Standard error of fractal dimension measurements         | Captures local border irregularity.                           |
+| `radius_worst`            | Largest (worst) radius measurement across all images     | Helps identify extreme abnormal growth.                       |
+| `texture_worst`           | Worst (largest) texture measurement                      | Captures maximum heterogeneity.                               |
+| `perimeter_worst`         | Worst perimeter measurement                              | Highlights extreme shape irregularity.                        |
+| `area_worst`              | Largest area observed                                    | Points to potentially large, aggressive tumors.               |
+| `smoothness_worst`        | Worst smoothness measurement                             | Emphasizes most irregular contours.                           |
+| `compactness_worst`       | Worst compactness measurement                            | Captures highest complexity in shape.                         |
+| `concavity_worst`         | Worst concavity measurement                              | Indicates most severe contour indentations.                   |
+| `concave points_worst`    | Worst count of concave points                            | Detects highest number of suspicious regions.                 |
+| `symmetry_worst`          | Worst symmetry measurement                               | Asymmetry at its most severe is a malignancy indicator.       |
+| `fractal_dimension_worst` | Worst fractal dimension measurement                      | Captures extreme border complexity.                           |
+
+
 This project builds a logistic regression model to classify breast tumors as benign or malignant with ~96% accuracy. Careful data cleaning, scaling, and evaluation (including ROC and confusion matrices) show the model’s strong ability to support early cancer diagnosis, highlighting the potential of machine learning in medical decision-making.
